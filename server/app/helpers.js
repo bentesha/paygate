@@ -2,6 +2,7 @@
 
 const uuid = require('uuid')
 const moment = require('moment')
+const Joi = require('joi')
 
 exports.init = init
 
@@ -24,6 +25,23 @@ class Helpers {
    */
   getCurrentDateTime() {
     return moment().format('YYYY-MM-DD HH:mm:ss')
+  }
+
+  /**
+   * Validates an object against a given Joi schema
+   * @param {*} object 
+   * @param {*} schema 
+   * @return {*} The validated object
+   */
+  async validateObject(object, schema) {
+    return new Promise((resolve, reject) => {
+      const { error, value } = Joi.validate(object, schema)
+      if(error) {
+        reject(error)
+      } else {
+        resolve(value)
+      }
+    })
   }
 
 }
