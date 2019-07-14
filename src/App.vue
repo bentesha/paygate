@@ -1,28 +1,42 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" class="main-container">
+    <router-view/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import Index from './components/Index.vue'
+import Payment from './components/Payment'
+import Confirm from './components/Confirm'
+import RequestSent from './components/RequestSent'
+
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+
+Vue.use(VueRouter)
+
+const routes = [
+  { path: '/', component: Index },
+  { path: '/payment', component: Payment },
+  { path: '/confirm', component: Confirm },
+  { path: '/send-request', component: RequestSent }
+]
+
+const router = new VueRouter({
+  routes
+})
 
 export default {
   name: 'app',
+  router,
   components: {
-    HelloWorld
+    Index
+  },
+
+  data() {
+    return {
+    }
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
