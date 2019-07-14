@@ -11,7 +11,9 @@ function init(app) {
   const routes = require('./routes')
 
   const expressApp = epxress()
-  expressApp.use(morgan('combined'))
+  if(app.config.env !== 'test') {
+    expressApp.use(morgan('combined'))
+  }
   expressApp.use(bodyParser.json())
   expressApp.use('/api/', routes(app))
 

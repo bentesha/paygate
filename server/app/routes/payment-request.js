@@ -27,7 +27,7 @@ function init(app) {
         returnUrl: Joi.string().uri().required()
       }
 
-      const options = app.helpers.validateObject(body, schema)
+      const options = await app.helpers.validateObject(body, schema)
       const paymentRequest = await app.dao.paymentRequest.create(options)
       response.json(trim(paymentRequest))
     })().catch(next)
