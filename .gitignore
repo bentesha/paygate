@@ -3,8 +3,12 @@ node_modules
 /dist
 
 # local env files
+.env
 .env.local
 .env.*.local
+
+# knex file
+knexfile.js
 
 # Log files
 npm-debug.log*
