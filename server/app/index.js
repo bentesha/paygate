@@ -8,6 +8,7 @@ class Application {
     this.config = require('./config').init(this)
     this.express = require('./express').init(this)
     this.dao = require('./dao').init(this)
+    this.helpers = require('./helpers').init(this)
   }
 
   run() {
