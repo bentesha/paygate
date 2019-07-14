@@ -1,28 +1,15 @@
 'use strict'
 
-exports.init = init
+const PaymentRequestDao = require('./PaymentRequestDao')
 
-class Dao {
-  /**
-   * 
-   * @param {import('..')} app - Application instance 
-   */
-  constructor(app) {
-    this.knex = require('knex')({
-      client: 'mysql',
-      connection: app.config.mysql,
-      pool: {
-        min: 2,
-        max: 10
-      }
-    })
-  }
-}
+exports.init = init
 
 /**
  * 
  * @param {import('..')} app - Application instance
  */
 function init(app) {
-  return new Dao(app)
+  return {
+    paymentRequest: new PaymentRequestDao(app)
+  }
 }
