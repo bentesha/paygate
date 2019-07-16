@@ -9,6 +9,7 @@ exports.up = function(knex) {
     table.decimal('amount', 10, 2)
     table.string('phoneNumber')
     table.string('paymentMethod')
+    table.string('reference')
   })
 };
 
