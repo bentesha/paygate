@@ -26,20 +26,22 @@ class PaymentRequestDao {
 
   /**
    * Adds new payment request into the database
-   * @param {object} options - Payment request option
-   * @param {string} options.returnUrl - A url to redirect to after payment is complete
+   * @param {object} values - Payment request option
+   * @param {string} values.returnUrl - A url to redirect to after payment is complete
+   * @param {string} values.reference - An optional string reference
    * @return {PaymentRequest} Payment request
    */
-  async create(options = {}) {
+  async create(values = {}) {
     // TODO Validate PaymentRequestDao::create() function arguments
     const now = this.app.helpers.getCurrentDateTime();
 
     const request = {
-      returnUrl: options.returnUrl,
+      returnUrl: values.returnUrl,
       id: this.app.helpers.generateId(),
       createdOn: now,
       updatedOn: now,
-      status: 'ON_PROGRESS'
+      status: 'ON_PROGRESS',
+      reference: values.reference
     }
 
     await this.app.knex
@@ -69,10 +71,10 @@ class PaymentRequestDao {
   /**
    * Update payment request
    * @param {string} id - Id of the payment request to update 
-   * @param {PaymentRequest} options - Payment requet details
+   * @param {PaymentRequest} values - Payment requet details
    * @return {PaymentRequest} Updated payment request
    */
-  async update(id, options = {}) {
+  async update(id, values = {}) {
     // TODO Validate PaymentRequestDao::update() function arguments
     const updatableFields = [
       'createdOn',
@@ -83,7 +85,7 @@ class PaymentRequestDao {
       'phoneNumber',
       'paymentMethod'
     ]
-    const fields = _.pick(options, updatableFields)
+    const fields = _.pick(values, updatableFields)
     await this.app.knex
       .into('payment_request')
       .where({ id })

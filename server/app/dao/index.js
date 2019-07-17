@@ -1,6 +1,8 @@
 'use strict'
 
 const PaymentRequestDao = require('./PaymentRequestDao')
+const PaymentAttemptDao = require('./PaymentAttempDao')
+const PaymentSession = require('./PaymentSessionDao')
 
 exports.init = init
 
@@ -10,6 +12,8 @@ exports.init = init
  */
 function init(app) {
   return {
-    paymentRequest: new PaymentRequestDao(app)
+    paymentRequest: new PaymentRequestDao(app),
+    paymentAttempt: new PaymentAttemptDao(app),
+    paymentSession: new PaymentSession(app)
   }
 }

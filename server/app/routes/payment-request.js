@@ -24,12 +24,17 @@ function init(app) {
   router.post('/', ({ body }, response, next) => {
     (async () => {
       const schema = {
-        returnUrl: Joi.string().uri().required()
+        returnUrl: Joi.string().uri().required(),
+        reference: [Joi.string(), Joi.number()]
       }
 
       const options = await app.helpers.validateObject(body, schema)
       const paymentRequest = await app.dao.paymentRequest.create(options)
-      response.json(trim(paymentRequest))
+      const session = await app.dao.paymentSession.create({
+        paymentRequestId: paymentRequest.id,
+        returnUrl: paymentRequest.returnUrl
+      })
+      response.json(session)
     })().catch(next)
   })
 
