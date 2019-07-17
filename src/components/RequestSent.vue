@@ -96,8 +96,9 @@ export default {
             if(data.status === 'COMPLETED') {
               this.$router.replace('/complete/' + this.data.id)
             } else if(data.status === 'FAILED') {
-              window.alert('No payment confirmed was received! \n click "Resend Request to retry."')
+              window.alert('No payment confirmation was received! \n click "Resend Request to retry."')
             }
+            this.data = data
           })
           .catch(console.error) // eslint-disable-line no-console
       }, 5000);
