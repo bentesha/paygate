@@ -36,7 +36,7 @@ function init(app) {
       })
       const result = trim(session)
       result.redirectUrl = app.config.redirectUrl.replace('{id}', session.id)
-      response.json(session)
+      response.json(result)
     })().catch(next)
   })
 

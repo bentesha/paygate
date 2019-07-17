@@ -3,6 +3,7 @@
 
 const http = require('http')
 const chalk = require('chalk')
+const path = require('path')
 
 class Application {
 
@@ -10,6 +11,7 @@ class Application {
    * Initialize application instance
    */
   init() {
+    this.ROOT_DIR = path.resolve(__dirname, '../..')
     // Load application dependencies
     this.config = require('./config').init(this)
     this.express = require('./express').init(this)
