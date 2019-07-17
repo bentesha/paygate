@@ -34,6 +34,8 @@ function init(app) {
         paymentRequestId: paymentRequest.id,
         returnUrl: paymentRequest.returnUrl
       })
+      const result = trim(session)
+      result.redirectUrl = app.config.redirectUrl.replace('{id}', session.id)
       response.json(session)
     })().catch(next)
   })
