@@ -13,6 +13,11 @@ function init () {
     apiKey: process.env.API_KEY,
     env: process.env.NODE_ENV || 'development',
 
+    webhook: {
+      url: process.env.WEBHOOK_URL,
+      secret: process.env.WEBHOOK_SECRET
+    },
+
     mysql: {
       host: process.env.DB_HOST || 'localhost',
       port: process.env.DB_PORT || 3306,
