@@ -41,7 +41,7 @@ class PaymentRequestDao {
       createdOn: now,
       updatedOn: now,
       status: 'ON_PROGRESS',
-      reference: values.reference
+      reference: values.reference === undefined ? '' : values.reference
     }
 
     await this.app.knex
