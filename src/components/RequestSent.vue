@@ -57,7 +57,8 @@ export default {
     },
 
     buttonEnabled() {
-      return this.data && this.data.status !== 'REQUEST_PENDING'
+      return this.data && this.data.status === 'ON_PROGRESS' ||
+        this.data.status === 'FAILED'
     }
   },
 
@@ -95,7 +96,7 @@ export default {
             if(data.status === 'COMPLETED') {
               this.$router.replace('/complete/' + this.data.id)
             } else if(data.status === 'FAILED') {
-              // Alert user 
+              window.alert('No payment confirmed was received! \n click "Resend Request to retry."')
             }
           })
           .catch(console.error) // eslint-disable-line no-console

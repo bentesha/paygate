@@ -67,7 +67,7 @@ export default {
         .then(response => {
           this.data = response.data
           console.log(this.data) // eslint-disable-line no-console
-          //this.startTimer()
+          this.startTimer()
         })
         .catch(console.error) // eslint-disable-line no-console
     }
