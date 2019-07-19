@@ -6,5 +6,5 @@ module.exports = async function({ data: result }) {
   /** @type {import('..')} */
   const app = this
 
-  await updatePaymentStatus(app, result.reference, result.success, result.transactionId)
+  await updatePaymentStatus(app, result.reference, result.status, result.transactionId)
 }
