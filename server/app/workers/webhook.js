@@ -25,9 +25,9 @@ module.exports = function({ data: paymentRequest }) {
     .then(response => response.data)
     .catch(error => {
       if(error.response) {
-        Promise.reject(error.response)
+        return Promise.reject(error.response)
       } else {
-        Promise.reject(error)
+        return Promise.reject(error)
       }
     })
 }
